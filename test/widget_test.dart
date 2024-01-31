@@ -1,0 +1,337 @@
+// This is a basic Flutter widget test.
+//
+// To perform an interaction with a widget in your test, use the WidgetTester
+// utility in the flutter_test package. For example, you can send tap and scroll
+// gestures. You can also use WidgetTester to find child widgets in the widget
+// tree, read text, and verify that the values of widget properties are correct.
+
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import '../lib/main.dart';
+
+void main() {
+  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp());
+
+    // Verify that our counter starts at 0.
+    expect(find.text('0'), findsOneWidget);
+    expect(find.text('1'), findsNothing);
+
+    // Tap the '+' icon and trigger a frame.
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pump();
+
+    // Verify that our counter has incremented.
+    expect(find.text('0'), findsNothing);
+    expect(find.text('1'), findsOneWidget);
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // TRY THIS: Try running your application with "flutter run". You'll see
+        // the application has a purple toolbar. Then, without quitting the app,
+        // try changing the seedColor in the colorScheme below to Colors.green
+        // and then invoke "hot reload" (save your changes or press the "hot
+        // reload" button in a Flutter-supported IDE, or press "r" if you used
+        // the command line to start the app).
+        //
+        // Notice that the counter didn't reset back to zero; the application
+        // state is not lost during the reload. To reset the state, use hot
+        // restart instead.
+        //
+        // This works for code too, not just values: Most code changes can be
+        // tested with just a hot reload.
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // This method is rerun every time setState is called, for instance as done
+    // by the _incrementCounter method above.
+    //
+    // The Flutter framework has been optimized to make rerunning build methods
+    // fast, so that you can just rebuild anything that needs updating rather
+    // than having to individually change instances of widgets.
+    return Scaffold(
+      appBar: AppBar(
+        // TRY THIS: Try changing the color here to a specific color (to
+        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+        // change color while the other colors stay the same.
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
+      ),
+      body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: Column(
+          // Column is also a layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          //
+          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+          // action in the IDE, or press "p" in the console), to see the
+          // wireframe for each widget.
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyObject {
+  int _value;
+
+  MyObject(this._value);
+
+  int get value => _value;
+
+  void increment() {
+    _value++;
+  }
+  void decrement() {
+    _value--;
+  }
+
+  void reset() {
+    _value = 0;
+  }
+
+  void add(int amount) {
+    _value += amount;
+  }
+
+  void subtract(int amount) {
+    _value -= amount;
+  }
+  // Phương thức set giá trị mới
+  void setValue(int newValue) {
+    _value = newValue;
+  }
+
+  // Phương thức kiểm tra xem giá trị có lớn hơn một giá trị cụ thể không
+  bool isGreaterThan(int comparisonValue) {
+    return _value > comparisonValue;
+  }
+
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final MyObject myObject = MyObject(0); // Tạo đối tượng MyObject với giá trị ban đầu là 0
+    return MaterialApp(
+      home: CounterPage(myObject: myObject),
+    );
+  }
+}
+
+class CounterPage extends StatefulWidget {
+  final MyObject myObject;
+
+  const CounterPage({Key? key , required this.myObject}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _CounterPageState();
+  }
+}
+
+class _CounterPageState extends State<CounterPage> {
+  // Không cần sử dụng biến _counter nữa
+  MyObject _myObject = MyObject(0);
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.lightBlueAccent,
+        title: const Text('Counter Page'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.remove),
+          ),
+        ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Count',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              '${widget.myObject.value}', // Sử dụng giá trị từ đối tượng MyObject
+              style: const TextStyle(
+                fontSize: 32,
+              ),
+            ),
+          ],
+        ),
+      ),
+      
+           floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              widget.myObject.decrement();
+              debugPrint('Counter: ${widget.myObject.value}');
+              setState(() {});
+            },
+            child: const Icon(Icons.remove),
+          ),
+          const SizedBox(height: 16), 
+          FloatingActionButton(
+            onPressed: () {
+              widget.myObject.reset();
+              debugPrint('Counter reset to 0');
+              setState(() {});
+            },
+            child: const Icon(Icons.refresh),
+          ),
+          const SizedBox(height: 16),
+          FloatingActionButton(
+            onPressed: () {
+              widget.myObject.add(5);
+              debugPrint('Added 5 to counter: ${widget.myObject.value}');
+              setState(() {});
+            },
+            child: const Text('+5'),
+          ),
+          const SizedBox(height: 16),
+          FloatingActionButton(
+            onPressed: () {
+              widget.myObject.subtract(5);
+              debugPrint('Subtracted 5 from counter: ${widget.myObject.value}');
+              setState(() {});
+            },
+            child: const Text('-5'),
+        
+          ),
+          ]),
+          
+    );
+           
+  }
+}
+//Giải thích :
+ //Việc sử dụng lớp MyObject giúp tổ chức và quản lý dữ liệu liên quan đến đối tượng một cách rõ ràng hơn.
+ //Điều này giúp giảm độ phức tạp của Stateful Widget và làm cho mã nguồn dễ bảo trì hơn.
